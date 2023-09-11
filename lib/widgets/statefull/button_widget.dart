@@ -42,7 +42,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         width: double.infinity,
         height: 60 * widget.fem,
         decoration: BoxDecoration(
-          color: buttonColor, // Sử dụng màu nền được cập nhật
+          color: buttonColor,
           borderRadius: BorderRadius.circular(15 * widget.fem),
           boxShadow: [
             BoxShadow(
