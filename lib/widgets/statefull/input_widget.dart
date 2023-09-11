@@ -7,13 +7,13 @@ class InputWidget extends StatefulWidget {
   final double fem;
   final String name;
   final bool isPassword;
-  final TextEditingController controller; // Thêm controller
+  final TextEditingController controller;
 
   InputWidget({
     required this.fem,
     required this.name,
     required this.isPassword,
-    required this.controller, // Thêm controller vào constructor
+    required this.controller,
   });
 
   @override
@@ -61,7 +61,10 @@ class _InputWidgetState extends State<InputWidget> {
                 width: double.infinity,
                 height: 44 * widget.fem,
                 decoration: BoxDecoration(
-                  border: Border.all(color: isFocused ? AppColors.black : AppColors.grey),
+                  border: Border.all(
+                    color: isFocused ? AppColors.deep_green : AppColors.grey,
+                    width: isFocused ? 2.0 : 1.0,
+                  ),
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(15 * widget.fem),
                 ),
@@ -72,7 +75,7 @@ class _InputWidgetState extends State<InputWidget> {
                 right: 10,
                 bottom: 10,
                 child: TextField(
-                  controller: widget.controller, // Sử dụng controller
+                  controller: widget.controller,
                   obscureText: widget.isPassword,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
