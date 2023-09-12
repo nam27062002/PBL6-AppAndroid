@@ -37,7 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.9.0
   google_sign_in: ^6.1.5
-
+  firebase_core: ^2.15.1
+  flutter_facebook_auth: ^6.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,6 +63,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/app/images/image_start1.png
+    - assets/app/images/image_start2.png
+    - assets/app/images/image_start3.png
     - assets/app/images/logo-1.png
     - assets/app/images/iconfb.png
     - assets/app/images/iconapple.png

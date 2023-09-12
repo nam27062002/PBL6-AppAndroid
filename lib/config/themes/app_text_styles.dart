@@ -40,6 +40,17 @@ class AppTextStyles{
     decoration: TextDecoration.underline,
   );
 
+  static const text_title_start = TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 30,
+    color: AppColors.black,
+  );
+
+  static const text_request_start = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 17,
+    color: AppColors.black,
+  );
 
   static const text_invalid = TextStyle(
     fontWeight: FontWeight.w700,

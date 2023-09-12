@@ -1,7 +1,9 @@
 import 'package:app/config/themes/app_colors.dart';
+import 'package:app/models/authentication.dart';
 import 'package:app/modules/booking_flow/sign_up_page.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +46,7 @@ class _SignUpPageState extends State<SignInPage> {
       signIn(email,password);
     }
   }
+
   void signIn(String email,String password) async {
     // loading circle
     showDialog(context: context,
@@ -60,28 +63,16 @@ class _SignUpPageState extends State<SignInPage> {
     });
 
   }
-  Future<User?> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    if (googleUser == null) {
-      print("ERRORRRRRRRRRRRRRRRRR GOOGLEUSER");
-      return null;
-    }
-
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    User? user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
-
-    return user;
+  void userCredentialHandle(UserCredential userCredential){
+    User? user = userCredential.user;
+    print("Displayname: ${user?.displayName} Email: ${user?.email} Phonenumber: ${user?.phoneNumber} PhotoURL: ${user?.photoURL}");
   }
 
   @override
   Widget build(BuildContext context) {
+    Authentication.signOutGoogle();
+    Authentication.signOutFacebook();
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -186,7 +177,6 @@ class _SignUpPageState extends State<SignInPage> {
                           child: ButtonWidget(fem: fem,ffem: ffem,name: "Sign in", onPressed: () {
                             handleSignIn();
                           },
-
                           ),
                         ),
                       ],
@@ -235,16 +225,11 @@ class _SignUpPageState extends State<SignInPage> {
                       crossAxisAlignment:  CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children:  [
-                        LogoWidget(fem: fem,url: "assets/app/images/iconfb.png", onPressed: () {
-                          print("Login with facebook");
+                        LogoWidget(fem: fem,url: "assets/app/images/iconfb.png", onPressed: () async {
+                          userCredentialHandle(await Authentication.signInWithFacebook());
                         },),
                         LogoWidget(fem: fem,url: "assets/app/images/icongg.png", onPressed: () async {
-                          User? user = await signInWithGoogle();
-                          if (user != null) {
-                            print('Người dùng đã đăng nhập với email: ${user.email}');
-                          } else {
-                            print('Đăng nhập không thành công');
-                          }
+                          userCredentialHandle(await Authentication.signInWithGoogle());
                         },),
                         LogoWidget(fem: fem,url: "assets/app/images/iconapple.png", onPressed: () {
                           print("Login with apple");
@@ -253,7 +238,7 @@ class _SignUpPageState extends State<SignInPage> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(62*fem, 49*fem, 65*fem, 7.89*fem),
+                    padding: EdgeInsets.fromLTRB(62*fem, 35*fem, 65*fem, 25*fem),
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

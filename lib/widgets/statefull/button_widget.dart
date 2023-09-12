@@ -20,7 +20,7 @@ class ButtonWidget extends StatefulWidget {
 }
 
 class _ButtonWidgetState extends State<ButtonWidget> {
-  Color buttonColor = AppColors.deep_green;
+  bool ispressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +28,14 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       onTap: widget.onPressed,
       onTapDown: (_) {
         setState(() {
-          buttonColor = AppColors.deep_green2;
+          ispressed = true;
         });
       },
       onTapUp: (_) {
-        setState(() {
-          buttonColor = AppColors.deep_green;
+        Future.delayed(Duration(milliseconds: 100), () {
+          setState(() {
+            ispressed = false;
+          });
         });
       },
       child: AnimatedContainer(
@@ -42,11 +44,11 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         width: double.infinity,
         height: 60 * widget.fem,
         decoration: BoxDecoration(
-          color: buttonColor, // Sử dụng màu nền được cập nhật
+          color: ispressed ? AppColors.deep_green2 : AppColors.deep_green,
           borderRadius: BorderRadius.circular(15 * widget.fem),
           boxShadow: [
             BoxShadow(
-              color: buttonColor, // Sử dụng màu nền được cập nhật
+              color: ispressed ? AppColors.deep_green2 : AppColors.deep_green,
               offset: Offset(0 * widget.fem, 4 * widget.fem),
               blurRadius: 10 * widget.fem,
             ),

@@ -78,159 +78,166 @@ class _SignUpPageState extends State<SignUpPage> {
                 color: AppColors.white,
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Container(
-                    padding: EdgeInsets.fromLTRB(1*fem, 0*fem, 2*fem, 20*fem),
-                    width: 378*fem,
-                    decoration: BoxDecoration (
-                      color: AppColors.blue_light,
-                      borderRadius: BorderRadius.only (
-                        bottomRight: Radius.circular(100*fem),
-                        bottomLeft: Radius.circular(100*fem),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(1*fem, 0*fem, 2*fem, 20*fem),
+                      width: 378*fem,
+                      decoration: BoxDecoration (
+                        color: AppColors.blue_light,
+                        borderRadius: BorderRadius.only (
+                          bottomRight: Radius.circular(100*fem),
+                          bottomLeft: Radius.circular(100*fem),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+
+                          // TITLE
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
+                            padding: EdgeInsets.fromLTRB(15*fem, 6*fem, 15*fem, 7*fem),
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(15*fem, 10*fem, 22*fem, 7*fem),
+                                  width: double.infinity,
+                                  child: const Text(
+                                    'RideWizard',
+                                    textAlign: TextAlign.center,
+                                    style: AppTextStyles.heading1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          // LOGO
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0.08*fem, 0*fem, 0*fem, 10*fem),
+                            width: 80*fem,
+                            height: 80*fem,
+                            child: Image.asset(
+                              'assets/app/images/logo-1.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+
+                          // FORM INPUT
+                          Container(
+                            margin: EdgeInsets.fromLTRB(30*fem, 10*fem, 30*fem, 30*fem),
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                InputWidget(fem: fem, name: "NAME", isPassword: false, controller: nameController,),
+                                InputWidget(fem: fem, name: "EMAIL", isPassword: false, controller: emailController,),
+                                InputWidget(fem: fem, name: "PASSWORD", isPassword: true, controller: passwordController,),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: Text(
+                                    errorText,
+                                    textAlign: TextAlign.left,
+                                    style: AppTextStyles.text_invalid,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          // BUTTON SUBMIT
+                          Container(
+                            margin: EdgeInsets.fromLTRB(30*fem, 0*fem, 30*fem, 0*fem),
+                            width: double.infinity,
+                            child: ButtonWidget(fem: fem,ffem: ffem,name: "Sign up", onPressed: () {
+                              handleSignUp();
+                            },
+
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-
-                        // TITLE
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
-                          padding: EdgeInsets.fromLTRB(15*fem, 6*fem, 15*fem, 7*fem),
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.fromLTRB(15*fem, 10*fem, 22*fem, 7*fem),
-                                width: double.infinity,
-                                child: const Text(
-                                  'RideWizard',
-                                  textAlign: TextAlign.center,
-                                  style: AppTextStyles.heading1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        // LOGO
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0.08*fem, 0*fem, 0*fem, 10*fem),
-                          width: 80*fem,
-                          height: 80*fem,
-                          child: Image.asset(
-                            'assets/app/images/logo-1.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-
-                        // FORM INPUT
-                        Container(
-                          margin: EdgeInsets.fromLTRB(30*fem, 10*fem, 30*fem, 30*fem),
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              InputWidget(fem: fem, name: "NAME", isPassword: false, controller: nameController,),
-                              InputWidget(fem: fem, name: "EMAIL", isPassword: false, controller: emailController,),
-                              InputWidget(fem: fem, name: "PASSWORD", isPassword: true, controller: passwordController,),
-                              SizedBox(
-                                width: double.infinity,
-                                child: Text(
-                                  errorText,
-                                  textAlign: TextAlign.left,
-                                  style: AppTextStyles.text_invalid,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        // BUTTON SUBMIT
-                        Container(
-                          margin: EdgeInsets.fromLTRB(30*fem, 0*fem, 30*fem, 0*fem),
-                          width: double.infinity,
-                          child: ButtonWidget(fem: fem,ffem: ffem,name: "Sign up", onPressed: () {
-                            handleSignUp();
-                          },
-
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(62*fem, 49*fem, 65*fem, 7.89*fem),
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // descLYh (314:5330)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 1*fem, 13*fem),
-                          child: const Text(
-                            'Already have an account?',
-                            style: AppTextStyles.text_reg_15_grey,
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(62*fem, 70*fem, 65*fem, 25*fem),
+                      width: double.infinity,
+
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 1*fem, 13*fem),
+                            child: const Text(
+                              'Already have an account?',
+                              style: AppTextStyles.text_reg_15_grey,
+                            ),
                           ),
-                        ),
-                        Container(
-                          // frame1000001527GBT (413:15879)
-                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9.06*fem),
-                          padding: EdgeInsets.fromLTRB(2*fem, 2*fem, 2*fem, 2*fem),
-                          width: double.infinity,
-                          height: 44*fem,
-                          decoration: BoxDecoration (
-                            color: Color(0xffd5dde0),
-                            borderRadius: BorderRadius.circular(10*fem),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()),);
-                                },
-                                child: Container(
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0*fem),
+                            padding: EdgeInsets.fromLTRB(2*fem, 2*fem, 2*fem, 2*fem),
+                            width: double.infinity,
+                            height: 44*fem,
+                            decoration: BoxDecoration (
+                              color: AppColors.grey2,
+                              borderRadius: BorderRadius.circular(10*fem),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()),);
+                                  },
+                                  child: Container(
+                                    width: 122*fem,
+                                    height: double.infinity,
+                                    decoration: BoxDecoration (
+                                      color: AppColors.deep_green,
+                                      borderRadius: BorderRadius.only (
+                                        topLeft: Radius.circular(8*fem),
+                                        bottomLeft: Radius.circular(8*fem),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Sign in',
+                                        style: AppTextStyles.text_button_login_white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                Container(
                                   width: 122*fem,
                                   height: double.infinity,
                                   decoration: BoxDecoration (
-                                    color: AppColors.deep_green,
+                                    color: AppColors.grey,
                                     borderRadius: BorderRadius.only (
-                                      topLeft: Radius.circular(8*fem),
-                                      bottomLeft: Radius.circular(8*fem),
+                                      topRight: Radius.circular(8*fem),
+                                      bottomRight: Radius.circular(8*fem),
                                     ),
                                   ),
                                   child: const Center(
                                     child: Text(
-                                      'Sign in',
-                                      style: AppTextStyles.text_button_login_white,
+                                      'Sign up',
+                                      style: AppTextStyles.text_button_login_black,
                                     ),
                                   ),
                                 ),
-                              ),
-
-                              Container(
-                                width: 122*fem,
-                                height: double.infinity,
-                                decoration: BoxDecoration (
-                                  borderRadius: BorderRadius.only (
-                                    topRight: Radius.circular(10*fem),
-                                    bottomRight: Radius.circular(10*fem),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'Sign up',
-                                    style: AppTextStyles.text_button_login_black,
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -241,173 +248,6 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
 
-    // return Container(
-    //   width: double.infinity,
-    //   child: Container(
-    //     width: double.infinity,
-    //     decoration: const BoxDecoration (
-    //       color: AppColors.white,
-    //     ),
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.end,
-    //       children: [
-    //         Container(
-    //           padding: EdgeInsets.fromLTRB(1*fem, 0*fem, 2*fem, 20*fem),
-    //           width: 378*fem,
-    //           decoration: BoxDecoration (
-    //             color: AppColors.blue_light,
-    //             borderRadius: BorderRadius.only (
-    //               bottomRight: Radius.circular(100*fem),
-    //               bottomLeft: Radius.circular(100*fem),
-    //             ),
-    //           ),
-    //           child: Column(
-    //             crossAxisAlignment: CrossAxisAlignment.center,
-    //             children: [
-    //
-    //               // TITLE
-    //               Container(
-    //                 margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
-    //                 padding: EdgeInsets.fromLTRB(15*fem, 6*fem, 15*fem, 7*fem),
-    //                 width: double.infinity,
-    //                 child: Column(
-    //                   crossAxisAlignment: CrossAxisAlignment.start,
-    //                   children: [
-    //                     Container(
-    //                       padding: EdgeInsets.fromLTRB(15*fem, 10*fem, 22*fem, 7*fem),
-    //                       width: double.infinity,
-    //                       child: const Text(
-    //                         'RideWizard',
-    //                         textAlign: TextAlign.center,
-    //                         style: AppTextStyles.heading1,
-    //                       ),
-    //                     ),
-    //                   ],
-    //                 ),
-    //               ),
-    //
-    //               // LOGO
-    //               Container(
-    //                 margin: EdgeInsets.fromLTRB(0.08*fem, 0*fem, 0*fem, 10*fem),
-    //                 width: 80*fem,
-    //                 height: 80*fem,
-    //                 child: Image.asset(
-    //                   'assets/app/images/logo-1.png',
-    //                   fit: BoxFit.cover,
-    //                 ),
-    //               ),
-    //
-    //               // FORM INPUT
-    //               Container(
-    //                 margin: EdgeInsets.fromLTRB(30*fem, 10*fem, 30*fem, 30*fem),
-    //                 width: double.infinity,
-    //                 child: Column(
-    //                   crossAxisAlignment: CrossAxisAlignment.center,
-    //                   children: [
-    //                     InputWidget(fem: fem, name: "NAME", isPassword: false, controller: nameController,),
-    //                     InputWidget(fem: fem, name: "EMAIL", isPassword: false, controller: emailController,),
-    //                     InputWidget(fem: fem, name: "PASSWORD", isPassword: true, controller: passwordController,),
-    //                     SizedBox(
-    //                       width: double.infinity,
-    //                       child: Text(
-    //                         errorText,
-    //                         textAlign: TextAlign.left,
-    //                         style: AppTextStyles.text_invalid,
-    //                       ),
-    //                     ),
-    //                   ],
-    //                 ),
-    //               ),
-    //
-    //               // BUTTON SUBMIT
-    //               Container(
-    //                 margin: EdgeInsets.fromLTRB(30*fem, 0*fem, 30*fem, 0*fem),
-    //                 width: double.infinity,
-    //                 child: ButtonWidget(fem: fem,ffem: ffem,name: "Sign up", onPressed: () {
-    //                   handleSignUp();
-    //                 },
-    //
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //         Container(
-    //           padding: EdgeInsets.fromLTRB(62*fem, 49*fem, 65*fem, 7.89*fem),
-    //           width: double.infinity,
-    //           child: Column(
-    //             crossAxisAlignment: CrossAxisAlignment.center,
-    //             children: [
-    //               Container(
-    //                 // descLYh (314:5330)
-    //                 margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 1*fem, 13*fem),
-    //                 child: const Text(
-    //                   'Already have an account?',
-    //                   style: AppTextStyles.text_reg_15_grey,
-    //                 ),
-    //               ),
-    //               Container(
-    //                 // frame1000001527GBT (413:15879)
-    //                 margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9.06*fem),
-    //                 padding: EdgeInsets.fromLTRB(2*fem, 2*fem, 2*fem, 2*fem),
-    //                 width: double.infinity,
-    //                 height: 44*fem,
-    //                 decoration: BoxDecoration (
-    //                   color: Color(0xffd5dde0),
-    //                   borderRadius: BorderRadius.circular(10*fem),
-    //                 ),
-    //                 child: Row(
-    //                   crossAxisAlignment: CrossAxisAlignment.center,
-    //                   children: [
-    //                     InkWell(
-    //                       onTap: () {
-    //                         Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()),);
-    //                       },
-    //                       child: Container(
-    //                         width: 122*fem,
-    //                         height: double.infinity,
-    //                         decoration: BoxDecoration (
-    //                           color: AppColors.deep_green,
-    //                           borderRadius: BorderRadius.only (
-    //                             topLeft: Radius.circular(8*fem),
-    //                             bottomLeft: Radius.circular(8*fem),
-    //                           ),
-    //                         ),
-    //                         child: const Center(
-    //                           child: Text(
-    //                             'Sign in',
-    //                             style: AppTextStyles.text_button_login_white,
-    //                           ),
-    //                         ),
-    //                       ),
-    //                     ),
-    //
-    //                     Container(
-    //                       width: 122*fem,
-    //                       height: double.infinity,
-    //                       decoration: BoxDecoration (
-    //                         borderRadius: BorderRadius.only (
-    //                           topRight: Radius.circular(10*fem),
-    //                           bottomRight: Radius.circular(10*fem),
-    //                         ),
-    //                       ),
-    //                       child: const Center(
-    //                         child: Text(
-    //                           'Sign up',
-    //                           style: AppTextStyles.text_button_login_black,
-    //                         ),
-    //                       ),
-    //                     ),
-    //                   ],
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
 
